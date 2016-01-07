@@ -6,10 +6,6 @@ defmodule PlugSecureHeaders do
 
   @doc "Callback implementation for Plug.init/1"
   def init(options) do
-  #  IO.puts "merge?"
-  #  IO.inspect merge?(options)
-  #  IO.inspect merge!(merge?(options), options)
-  #  IO.inspect validate(merge!(merge?(options), options))
     options
       |> merge?
       |> merge!(options)
@@ -102,14 +98,12 @@ defmodule PlugSecureHeaders do
     
   defp merge_options(options) do
     env_options = Application.get_env(:plug_secure_headers, PlugSecureHeaders, [])    
-    #env_options = [plug_secure_headers: [warn_only: false,merge: false,config: [http_public_key_pins: "", x_download_options: "noopen", x_frame_options: "sameorigin", x_permitted_cross_domain_policies: "none", x_xss_protection: "1; mode=block"]]] 
     merged_options = Keyword.merge(env_options[:plug_secure_headers], options[:plug_secure_headers])
     [plug_secure_headers: merged_options]
   end
     
   defp merge_config(options) do
     env_options = Application.get_env(:plug_secure_headers, PlugSecureHeaders, [])    
-    #env_options = [plug_secure_headers: [warn_only: false,merge: false,config: [http_public_key_pins: "", x_download_options: "noopen", x_frame_options: "sameorigin", x_permitted_cross_domain_policies: "none", x_xss_protection: "1; mode=block"]]] 
     env_config = get_config(env_options)
     config = get_config(options)    
    	merged_config = Keyword.merge(env_config, config)
