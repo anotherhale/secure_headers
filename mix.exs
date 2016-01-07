@@ -27,6 +27,8 @@ defmodule PlugSecureHeaders.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [
+     {:pipe, github: "batate/elixir-pipes"},
+     {:plug, ">= 1.0.2"}]
   end
 end
