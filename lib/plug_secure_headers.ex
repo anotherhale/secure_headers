@@ -2,7 +2,7 @@ defmodule PlugSecureHeaders do
   
   use Pipe
 
-  import Plug.Conn, only: [halt: 1, delete_resp_header: 2, update_resp_header: 4]
+  import Plug.Conn#, only: [halt: 1, delete_resp_header: 2, update_resp_header: 4, assign: 3]
 
   @doc "Callback implementation for Plug.init/1"
   def init(options) do
@@ -55,6 +55,7 @@ defmodule PlugSecureHeaders do
   defp set(conn, _key, nil), do: conn
   
   defp set(conn, key, value) when value |> is_bitstring do
+    conn = conn |> assign(make_atom(key), value)
     update_resp_header(conn, key, value, fn(_) -> value end)
   end
   
@@ -77,6 +78,8 @@ defmodule PlugSecureHeaders do
   defp dasherize(data) when is_atom(data), do: dasherize(Atom.to_string(data))
   
   defp dasherize(data), do: String.replace(data, "_", "-")
+
+  defp make_atom(string), do: String.to_atom(String.replace(string, "-", "_"))
 
   defp get_config(options), do: get_config(options, [])
   
@@ -107,7 +110,7 @@ defmodule PlugSecureHeaders do
     env_config = get_config(env_options)
     config = get_config(options)    
    	merged_config = Keyword.merge(env_config, config)
-  	set_config(options, merged_config)#Keyword.delete(options, :config) ++ [config: merged_config]
+  	set_config(options, merged_config)
   end
     
   defp merge!(boolean, options) do

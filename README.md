@@ -76,21 +76,34 @@ defmodule SecurePhoenixApp.SecureController do
   def index(conn, _params) do
     conn
     |> put_status(Status.code :ok)
-    |> text "PlugSecureHeaders secure configuration:"
-    |> text ""
-    |> text "Content Security Policy (CSP):         #{conn.assigns[:content_security_policy]}"
-    |> text "HTTP Strict Transport Security (HSTS): #{conn.assigns[:strict_transport_security]}"
-    |> text "X-Content-Type-Options:                #{conn.assigns[:x_content_type_options]}"
-    |> text "X-Download-Options:                    #{conn.assigns[:x_download_options]}"
-    |> text "X-Frame-Options (XFO):                 #{conn.assigns[:x_frame_options]}"
-    |> text "X-Permitted-Cross-Domain-Policies:     #{conn.assigns[:x_permitted_cross_domain_policies]}"  
-    |> text "X-XSS-Protection:                      #{conn.assigns[:x_xss_protection]}"
-    |> text "Public Key Pinning:                    #{conn.assigns[:http_public_key_pins]}"    
-  end
+    |> text """
+    PlugSecureHeaders secure configuration:
+    
+    Content Security Policy (CSP):         #{conn.assigns[:content_security_policy]}
+    HTTP Strict Transport Security (HSTS): #{conn.assigns[:strict_transport_security]}
+    X-Content-Type-Options:                #{conn.assigns[:x_content_type_options]}
+    X-Download-Options:                    #{conn.assigns[:x_download_options]}
+    X-Frame-Options (XFO):                 #{conn.assigns[:x_frame_options]}
+    X-Permitted-Cross-Domain-Policies:     #{conn.assigns[:x_permitted_cross_domain_policies]}  
+    X-XSS-Protection:                      #{conn.assigns[:x_xss_protection]}
+    Public Key Pinning:                    #{conn.assigns[:http_public_key_pins]}     
+
+    """
+    end
 end
 ```
 
 Configuration values can be overridden in the application environment.  By default they will be merged with the default secure header configuration.
+
+Order of merge resolution
+
+First - config provided in-line to the plug
+
+```elixir
+    plug PlugSecureHeaders plug_secure_headers: [config: [x_xss_protection: "1; mode=block"]]
+```
+
+Second - config in Application environment
 
 ```elixir
 # filename: dev.exs
@@ -106,6 +119,8 @@ config plug_secure_headers:, PlugSecureHeaders,
     ]
 ```
 
+Third - default secure config
+
 You can disable merging application environment configuration with the default secure configuration by providing the following option [merge_config: false] to PlugSecureHeaders:
 
 ```elixir
@@ -117,7 +132,7 @@ defmodule SecurePhoenixApp.SecureRouter do
     plug :fetch_session
     plug :fetch_flash
     plug :protect_from_forgery
-    plug PlugSecureHeaders merge_config: false
+    plug PlugSecureHeaders plug_secure_headers: [merge_config: false]
   end
 
   scope "/", HelloPhoenix do
