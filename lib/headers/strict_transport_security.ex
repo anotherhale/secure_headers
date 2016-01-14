@@ -1,4 +1,4 @@
-defmodule PlugSecureHeaders.StrictTrasportSecurity do
+defmodule SecureHeaders.StrictTrasportSecurity do
 
   @valid_header  ~r/\Amax-age=\d+(; includeSubdomains)?(; preload)?\z/i
   @error_msg "Invalid configuration for strict-transport-security"

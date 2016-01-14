@@ -1,6 +1,6 @@
-defmodule PlugSecureHeaders.XXssProtectionTest do
+defmodule SecureHeaders.XXssProtectionTest do
   use ExUnit.Case, async: true
-  alias PlugSecureHeaders.XXssProtection
+  alias SecureHeaders.XXssProtection
 
   #
   # test valid configuration

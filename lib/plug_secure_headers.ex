@@ -1,4 +1,4 @@
-defmodule PlugSecureHeaders do
+defmodule SecureHeaders do
   
   use Pipe
 
@@ -23,15 +23,15 @@ defmodule PlugSecureHeaders do
   defp validate(options) do
     pipe_matching x, {:ok, x},
       options
-      |> PlugSecureHeaders.PlugSecureHeaders.validate
-      |> PlugSecureHeaders.ContentSecurityPolicy.validate
-      |> PlugSecureHeaders.HttpPublicKeyPins.validate
-      |> PlugSecureHeaders.StrictTrasportSecurity.validate
-      |> PlugSecureHeaders.XContentTypeOptions.validate
-      |> PlugSecureHeaders.XDownloadOptions.validate
-      |> PlugSecureHeaders.XFrameOptions.validate
-      |> PlugSecureHeaders.XPermittedCrossDomainPolicies.validate
-      |> PlugSecureHeaders.XXssProtection.validate
+      |> SecureHeaders.SecureHeaders.validate
+      |> SecureHeaders.ContentSecurityPolicy.validate
+      |> SecureHeaders.HttpPublicKeyPins.validate
+      |> SecureHeaders.StrictTrasportSecurity.validate
+      |> SecureHeaders.XContentTypeOptions.validate
+      |> SecureHeaders.XDownloadOptions.validate
+      |> SecureHeaders.XFrameOptions.validate
+      |> SecureHeaders.XPermittedCrossDomainPolicies.validate
+      |> SecureHeaders.XXssProtection.validate
   end
   
   defp set_headers(conn, options) when options |> is_list do
@@ -84,29 +84,29 @@ defmodule PlugSecureHeaders do
   defp get_config(options), do: get_config(options, [])
   
   defp get_config(options, default_value) do
-    case get_in(options, [:plug_secure_headers, :config]) do
+    case get_in(options, [:secure_headers, :config]) do
       nil -> default_value
-      _   -> get_in(options, [:plug_secure_headers, :config])
+      _   -> get_in(options, [:secure_headers, :config])
     end
   end
   
   defp set_config(options, config) when options |> is_list do
-    if Keyword.has_key?(options, :plug_secure_headers) do
-    	options = Keyword.delete(options[:plug_secure_headers], :config)  ++ [config: config]
+    if Keyword.has_key?(options, :secure_headers) do
+    	options = Keyword.delete(options[:secure_headers], :config)  ++ [config: config]
     end
-    [plug_secure_headers: options]
+    [secure_headers: options]
   end    
     
-  defp merge?(options), do: get_in(options, [:plug_secure_headers, :merge])
+  defp merge?(options), do: get_in(options, [:secure_headers, :merge])
     
   defp merge_options(options) do
-    env_options = Application.get_env(:plug_secure_headers, PlugSecureHeaders, [])    
-    merged_options = Keyword.merge(env_options[:plug_secure_headers], options[:plug_secure_headers])
-    [plug_secure_headers: merged_options]
+    env_options = Application.get_env(:secure_headers, SecureHeaders, [])    
+    merged_options = Keyword.merge(env_options[:secure_headers], options[:secure_headers])
+    [secure_headers: merged_options]
   end
     
   defp merge_config(options) do
-    env_options = Application.get_env(:plug_secure_headers, PlugSecureHeaders, [])    
+    env_options = Application.get_env(:secure_headers, SecureHeaders, [])    
     env_config = get_config(env_options)
     config = get_config(options)    
    	merged_config = Keyword.merge(env_config, config)

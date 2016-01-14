@@ -1,6 +1,6 @@
-# PlugSecureHeaders
+# SecureHeaders
 
-This Plug will automatically apply several security headers to the Plug.Conn response. By design PlugSecureHeaders will attempt to apply the most strict security policy.  Although, security headers are configurable and are validated to avoid misconfiguration.   
+This Plug will automatically apply several security headers to the Plug.Conn response. By design SecureHeaders will attempt to apply the most strict security policy.  Although, security headers are configurable and are validated to avoid misconfiguration.   
 
 The supported security headers include:
   
@@ -17,24 +17,24 @@ The supported security headers include:
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
 
-  1. Add plug_secure_headers to your list of dependencies in `mix.exs`:
+  1. Add secure_headers to your list of dependencies in `mix.exs`:
 
         def deps do
-          [{:plug_secure_headers, "~> 0.1.0"}]
+          [{:secure_headers, "~> 0.1.0"}]
         end
 
-  2. Ensure plug_secure_headers is started before your application:
+  2. Ensure secure_headers is started before your application:
 
         def application do
-          [applications: [:plug_secure_headers]]
+          [applications: [:secure_headers]]
         end
         
   3. Add the plug to your application, e.g., to a pipeline in a [Phoenix](http://www.phoenixframework.org/)
-router.   PlugSecureHeaders by design defaults to a strict security policy.  If no opts are supplied it uses
+router.   SecureHeaders by design defaults to a strict security policy.  If no opts are supplied it uses
 the following secure configuration:
 
 ```elixir
-config plug_secure_headers:, PlugSecureHeaders, 
+config secure_headers:, SecureHeaders, 
   config: [
       content_security_policy: "default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';", 
       http_public_key_pins: "", 
@@ -57,7 +57,7 @@ defmodule SecurePhoenixApp.SecureRouter do
     plug :fetch_session
     plug :fetch_flash
     plug :protect_from_forgery
-    plug PlugSecureHeaders
+    plug SecureHeaders
   end
 
   scope "/", HelloPhoenix do
@@ -77,7 +77,7 @@ defmodule SecurePhoenixApp.SecureController do
     conn
     |> put_status(Status.code :ok)
     |> text """
-    PlugSecureHeaders secure configuration:
+    SecureHeaders secure configuration:
     
     Content Security Policy (CSP):         #{conn.assigns[:content_security_policy]}
     HTTP Strict Transport Security (HSTS): #{conn.assigns[:strict_transport_security]}
@@ -100,7 +100,7 @@ Order of merge resolution
 First - config provided in-line to the plug
 
 ```elixir
-    plug PlugSecureHeaders plug_secure_headers: [config: [x_xss_protection: "1; mode=block"]]
+    plug SecureHeaders secure_headers: [config: [x_xss_protection: "1; mode=block"]]
 ```
 
 Second - config in Application environment
@@ -110,7 +110,7 @@ Second - config in Application environment
 
 use Mix.Config
 
-config plug_secure_headers:, PlugSecureHeaders, 
+config secure_headers:, SecureHeaders, 
     config: [
       content_security_policy: "default-src 'self';" , 
       strict_transport_security: "max-age=631138519", 
@@ -121,7 +121,7 @@ config plug_secure_headers:, PlugSecureHeaders,
 
 Third - default secure config
 
-You can disable merging application environment configuration with the default secure configuration by providing the following option [merge_config: false] to PlugSecureHeaders:
+You can disable merging application environment configuration with the default secure configuration by providing the following option [merge_config: false] to SecureHeaders:
 
 ```elixir
 defmodule SecurePhoenixApp.SecureRouter do
@@ -132,7 +132,7 @@ defmodule SecurePhoenixApp.SecureRouter do
     plug :fetch_session
     plug :fetch_flash
     plug :protect_from_forgery
-    plug PlugSecureHeaders plug_secure_headers: [merge_config: false]
+    plug SecureHeaders secure_headers: [merge_config: false]
   end
 
   scope "/", HelloPhoenix do

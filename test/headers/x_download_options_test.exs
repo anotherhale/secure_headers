@@ -1,6 +1,6 @@
-defmodule PlugSecureHeaders.XDownloadOptionsTest do
+defmodule SecureHeaders.XDownloadOptionsTest do
   use ExUnit.Case, async: true
-  alias PlugSecureHeaders.XDownloadOptions
+  alias SecureHeaders.XDownloadOptions
   
     
   #

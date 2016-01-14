@@ -1,4 +1,4 @@
-defmodule PlugSecureHeaders.XFrameOptions do 
+defmodule SecureHeaders.XFrameOptions do 
 
   @valid_header ~r/\A(sameorigin\z|deny\z|allow-from[:\s])/i
 

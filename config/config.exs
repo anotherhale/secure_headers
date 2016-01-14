@@ -10,11 +10,11 @@ use Mix.Config
 
 # You can configure for your application as:
 #
-#     config :plug_secure_headers, key: :value
+#     config :secure_headers, key: :value
 #
 # And access this configuration in your application as:
 #
-#     Application.get_env(:plug_secure_headers, :key)
+#     Application.get_env(:secure_headers, :key)
 #
 # Or configure a 3rd-party app:
 #
@@ -28,8 +28,8 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #import_config "#{Mix.env}.exs"
-config :plug_secure_headers, PlugSecureHeaders,
-    plug_secure_headers: [
+config :secure_headers, SecureHeaders,
+    secure_headers: [
     	warn_only: false,
     	merge: false,
     	report_only: false,

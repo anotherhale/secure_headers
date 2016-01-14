@@ -1,4 +1,4 @@
-defmodule PlugSecureHeaders.PlugSecureHeadersTest do
+defmodule SecureHeaders.SecureHeadersTest do
 
   use ExUnit.Case, async: true
   use Plug.Test
@@ -71,50 +71,50 @@ defmodule PlugSecureHeaders.PlugSecureHeadersTest do
   end
 
   test "should allow empty config" do 
-    assert {:ok, _} = PlugSecureHeaders.PlugSecureHeaders.validate([])
+    assert {:ok, _} = SecureHeaders.SecureHeaders.validate([])
   end
 
   test "should allow empty config with options" do 
-    assert {:ok, _} = PlugSecureHeaders.PlugSecureHeaders.validate([warn_only: true])
+    assert {:ok, _} = SecureHeaders.SecureHeaders.validate([warn_only: true])
    end
 
   test "should allow config with no options" do
-    assert {:ok, _} = PlugSecureHeaders.PlugSecureHeaders.validate([config: [x_content_type_options: "nosniff"]])
+    assert {:ok, _} = SecureHeaders.SecureHeaders.validate([config: [x_content_type_options: "nosniff"]])
   end
     
   test "should allow config with options" do 
-    assert {:ok, _} = PlugSecureHeaders.PlugSecureHeaders.validate([warn_only: true, config: [x_content_type_options: "nosniff"]])
+    assert {:ok, _} = SecureHeaders.SecureHeaders.validate([warn_only: true, config: [x_content_type_options: "nosniff"]])
   end
 
   test "should allow use_secure_config: false to return options with no config" do
-    assert {:ok, [use_secure_config: false]} = PlugSecureHeaders.PlugSecureHeaders.validate([use_secure_config: false])
+    assert {:ok, [use_secure_config: false]} = SecureHeaders.SecureHeaders.validate([use_secure_config: false])
   end
   
   test "raises an exception if invalid option" do
-     assert_raise ArgumentError, "Invalid configuration for PlugSecureHeaders", fn -> PlugSecureHeaders.PlugSecureHeaders.validate([INVALID_OPTION: false]) end
+     assert_raise ArgumentError, "Invalid configuration for SecureHeaders", fn -> SecureHeaders.SecureHeaders.validate([INVALID_OPTION: false]) end
   end
 
   test "raises an exception if warn_only: is not a boolean" do 
-     assert_raise ArgumentError, "Invalid configuration for PlugSecureHeaders", fn -> PlugSecureHeaders.PlugSecureHeaders.validate([warn_only: "INVALID_CONFIG"]) end
+     assert_raise ArgumentError, "Invalid configuration for SecureHeaders", fn -> SecureHeaders.SecureHeaders.validate([warn_only: "INVALID_CONFIG"]) end
   end
 
   test "raises an exception if use_secure_config: is not a boolean" do
-     assert_raise ArgumentError, "Invalid configuration for PlugSecureHeaders", fn -> PlugSecureHeaders.PlugSecureHeaders.validate([use_secure_config: "INVALID_CONFIG"]) end
+     assert_raise ArgumentError, "Invalid configuration for SecureHeaders", fn -> SecureHeaders.SecureHeaders.validate([use_secure_config: "INVALID_CONFIG"]) end
   end
 
   test "raises an exception if merge_config: is not a boolean" do
-     assert_raise ArgumentError, "Invalid configuration for PlugSecureHeaders", fn -> PlugSecureHeaders.PlugSecureHeaders.validate([merge_config: "INVALID_CONFIG"]) end
+     assert_raise ArgumentError, "Invalid configuration for SecureHeaders", fn -> SecureHeaders.SecureHeaders.validate([merge_config: "INVALID_CONFIG"]) end
   end
 
   test "validation fails if invalid option" do
-     assert {:error, "Invalid configuration for PlugSecureHeaders"} = PlugSecureHeaders.PlugSecureHeaders.validate([warn_only: true, INVALID_OPTION: false])
+     assert {:error, "Invalid configuration for SecureHeaders"} = SecureHeaders.SecureHeaders.validate([warn_only: true, INVALID_OPTION: false])
   end
      
   test "validation fails if use_secure_config: is not a boolean" do
-     assert {:error, "Invalid configuration for PlugSecureHeaders"} = PlugSecureHeaders.PlugSecureHeaders.validate([warn_only: true, use_secure_config: "INVALID_CONFIG"])
+     assert {:error, "Invalid configuration for SecureHeaders"} = SecureHeaders.SecureHeaders.validate([warn_only: true, use_secure_config: "INVALID_CONFIG"])
   end
 
   test "validation fails if merge_config: is not a boolean" do
-     assert {:error, "Invalid configuration for PlugSecureHeaders"} = PlugSecureHeaders.PlugSecureHeaders.validate([warn_only: true, merge_config: "INVALID_CONFIG"])
+     assert {:error, "Invalid configuration for SecureHeaders"} = SecureHeaders.SecureHeaders.validate([warn_only: true, merge_config: "INVALID_CONFIG"])
   end
 end

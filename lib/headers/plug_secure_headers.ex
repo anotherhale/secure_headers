@@ -1,7 +1,7 @@
-defmodule PlugSecureHeaders.PlugSecureHeaders do
+defmodule SecureHeaders.SecureHeaders do
   
   
-  @error_msg "Invalid configuration for PlugSecureHeaders"
+  @error_msg "Invalid configuration for SecureHeaders"
   @secure_config [
     warn_only: false,
     merge: false,

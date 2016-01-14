@@ -1,6 +1,6 @@
-defmodule PlugSecureHeaders.PublicKeyPinsTest do
+defmodule SecureHeaders.PublicKeyPinsTest do
   use ExUnit.Case, async: true
-  alias PlugSecureHeaders.PublicKeyPins  
+  alias SecureHeaders.PublicKeyPins  
 
   #
   # test valid configuration

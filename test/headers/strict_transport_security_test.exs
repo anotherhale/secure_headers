@@ -1,4 +1,4 @@
-defmodule PlugSecureHeaders.StrictTrasportSecurityTest do
+defmodule SecureHeaders.StrictTrasportSecurityTest do
   use ExUnit.Case, async: true
     
     """

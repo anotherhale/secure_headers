@@ -1,6 +1,6 @@
-defmodule PlugSecureHeaders.XContentTypeOptionsTest do
+defmodule SecureHeaders.XContentTypeOptionsTest do
   use ExUnit.Case, async: true
-  alias PlugSecureHeaders.XContentTypeOptions
+  alias SecureHeaders.XContentTypeOptions
   
   #
   # test valid configuration

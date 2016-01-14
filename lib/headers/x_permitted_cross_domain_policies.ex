@@ -1,4 +1,4 @@
-defmodule PlugSecureHeaders.XPermittedCrossDomainPolicies do
+defmodule SecureHeaders.XPermittedCrossDomainPolicies do
 
   @valid_header ~r/\A(ALL\z|NONE\z|MASTER-ONLY\z|BY-FTP-FILENAME\z|BY-CONTENT-TYPE\z|])/i
   
