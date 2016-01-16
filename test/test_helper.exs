@@ -5,7 +5,7 @@ defmodule AppMaker do
 		quote do
 			use Plug.Router
 			alias Plug.Conn.Status
-			plug SecureHeaders, unquote(options)
+			plug SecureHeaders, unquote(options)
 			plug :match
 			plug :dispatch
 		end
@@ -31,7 +31,7 @@ defmodule TestApp do
   ] 
 	use AppMaker, secure_headers: @secure_config
 	get "/" do
-		send_resp(conn, Status.code(:ok), "SecureHeadersTest")
+		send_resp(conn, Status.code(:ok), "SecureHeaders Test")
 	end
 end
 
@@ -45,7 +45,7 @@ defmodule CustomTestApp do
       content_security_policy: "default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';"]
   ]
 	get "/" do
-		send_resp(conn, Status.code(:ok), "SecureHeadersTest")
+		send_resp(conn, Status.code(:ok), "SecureHeaders Test")
 	end
 end
 
@@ -59,7 +59,7 @@ defmodule CustomTestAppMergeConfigFalse do
       content_security_policy: "default-src 'none';"]
   ]
 	get "/" do
-		send_resp(conn, Status.code(:ok), "SecureHeadersTest")
+		send_resp(conn, Status.code(:ok), "SecureHeaders Test")
 	end
 end
 
@@ -73,6 +73,6 @@ defmodule CustomTestAppMergeConfigTrue do
       content_security_policy: "default-src 'none';"]
   ]
 	get "/" do
-		send_resp(conn, Status.code(:ok), "SecureHeadersTest")
+		send_resp(conn, Status.code(:ok), "SecureHeaders Test")
 	end
 end

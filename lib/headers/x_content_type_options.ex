@@ -1,4 +1,4 @@
-defmodule SecureHeaders.XContentTypeOptions do
+defmodule SecureHeaders.XContentTypeOptions do
   @error_msg "Invalid configuration for x-content-type-options. Valid values are 'nosniff', nil, or false"  
   @valid_header ~r/\Anosniff\z/i
 

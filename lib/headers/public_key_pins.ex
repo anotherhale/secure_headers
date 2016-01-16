@@ -1,4 +1,4 @@
-defmodule SecureHeaders.PublicKeyPins do
+defmodule SecureHeaders.PublicKeyPins do
 
   @valid_header  ~r/^((pin-sha256=\S+)\s*){2,}\s*max-age=\d+(;\s*?includeSubdomains)?(;\s*?report-uri=\S+)?/  
   @error_msg "Invalid configuration for public-key-pins"

@@ -1,4 +1,4 @@
-defmodule SecureHeaders do
+defmodule SecureHeaders do
   
   use Pipe
 
@@ -23,15 +23,15 @@ defmodule SecureHeaders do
   defp validate(options) do
     pipe_matching x, {:ok, x},
       options
-      |> SecureHeaders.SecureHeaders.validate
-      |> SecureHeaders.ContentSecurityPolicy.validate
-      |> SecureHeaders.HttpPublicKeyPins.validate
-      |> SecureHeaders.StrictTrasportSecurity.validate
-      |> SecureHeaders.XContentTypeOptions.validate
-      |> SecureHeaders.XDownloadOptions.validate
-      |> SecureHeaders.XFrameOptions.validate
-      |> SecureHeaders.XPermittedCrossDomainPolicies.validate
-      |> SecureHeaders.XXssProtection.validate
+      |> SecureHeaders.SecureHeaders.validate
+      |> SecureHeaders.ContentSecurityPolicy.validate
+      |> SecureHeaders.HttpPublicKeyPins.validate
+      |> SecureHeaders.StrictTrasportSecurity.validate
+      |> SecureHeaders.XContentTypeOptions.validate
+      |> SecureHeaders.XDownloadOptions.validate
+      |> SecureHeaders.XFrameOptions.validate
+      |> SecureHeaders.XPermittedCrossDomainPolicies.validate
+      |> SecureHeaders.XXssProtection.validate
   end
   
   defp set_headers(conn, options) when options |> is_list do
@@ -100,13 +100,13 @@ defmodule SecureHeaders do
   defp merge?(options), do: get_in(options, [:secure_headers, :merge])
     
   defp merge_options(options) do
-    env_options = Application.get_env(:secure_headers, SecureHeaders, [])    
+    env_options = Application.get_env(:secure_headers, SecureHeaders, [])    
     merged_options = Keyword.merge(env_options[:secure_headers], options[:secure_headers])
     [secure_headers: merged_options]
   end
     
   defp merge_config(options) do
-    env_options = Application.get_env(:secure_headers, SecureHeaders, [])    
+    env_options = Application.get_env(:secure_headers, SecureHeaders, [])    
     env_config = get_config(env_options)
     config = get_config(options)    
    	merged_config = Keyword.merge(env_config, config)

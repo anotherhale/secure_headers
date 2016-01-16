@@ -1,6 +1,6 @@
-defmodule SecureHeaders.XFrameOptionsTest do
+defmodule SecureHeaders.XFrameOptionsTest do
   use ExUnit.Case, async: true
-  alias SecureHeaders.XFrameOptions
+  alias SecureHeaders.XFrameOptions
   
   #
   # test valid config 

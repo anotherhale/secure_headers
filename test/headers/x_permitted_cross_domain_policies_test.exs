@@ -1,6 +1,6 @@
-defmodule SecureHeaders.XPermittedCrossDomainPoliciesTest do
+defmodule SecureHeaders.XPermittedCrossDomainPoliciesTest do
   use ExUnit.Case, async: true
-  alias SecureHeaders.XPermittedCrossDomainPolicies
+  alias SecureHeaders.XPermittedCrossDomainPolicies
   
   @valid_header ~r/\A(ALL\z|NONE\z|MASTER-ONLY\z|BY-CONTENT-TYPE\z|BY-FTP-FILENAME\z])/i
   

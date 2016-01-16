@@ -1,4 +1,4 @@
-defmodule SecureHeaders.ContentSecurityPolicy do
+defmodule SecureHeaders.ContentSecurityPolicy do
 
   @header_name "strict-transport-security"
   @default_value "default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';"

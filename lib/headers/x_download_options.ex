@@ -1,4 +1,4 @@
-defmodule SecureHeaders.XDownloadOptions do
+defmodule SecureHeaders.XDownloadOptions do
 
   @error_msg "Invalid configuration for x-download-options"  
   @valid_header ~r/\Anoopen\z/i

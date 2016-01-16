@@ -1,4 +1,4 @@
-defmodule SecureHeaders.Mixfile do
+defmodule SecureHeaders.Mixfile do
   use Mix.Project
 
   def project do
