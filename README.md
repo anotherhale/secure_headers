@@ -15,7 +15,7 @@ The supported security headers include:
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+SecureHeaders is available in Hex (https://hex.pm/packages/secure_headers) and can be installed as:
 
   1. Add secure_headers to your list of dependencies in `mix.exs`:
 
@@ -29,8 +29,11 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
           [applications: [:secure_headers]]
         end
         
-  3. Add the plug to your application, e.g., to a pipeline in a [Phoenix](http://www.phoenixframework.org/)
-router.   SecureHeaders by design defaults to a strict security policy.  If no opts are supplied it uses
+  3. Add the plug to your application, e.g., to a pipeline in a [Phoenix](http://www.phoenixframework.org/) router. 
+
+  * Don't forget to run mix deps.get *   
+
+SecureHeaders by design defaults to a strict security policy.  If no opts are supplied it uses
 the following secure configuration:
 
 ```elixir
@@ -143,4 +146,8 @@ defmodule SecurePhoenixApp.SecureRouter do
 end    
 ```
 
+# TODOs
 
+ - Implement nonce for Content Security Policies
+ - Write tests for Content Security Policies
+ 
