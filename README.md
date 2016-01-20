@@ -150,4 +150,4 @@ end
 
  - Implement nonce for Content Security Policies
  - Write tests for Content Security Policies
- 
+ - Finish Documentation (README and moddocs)
