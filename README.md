@@ -20,7 +20,7 @@ SecureHeaders is available in Hex (https://hex.pm/packages/secure_headers) and c
   1. Add secure_headers to your list of dependencies in `mix.exs`:
 
         def deps do
-          [{:secure_headers, "~> 0.1.0"}]
+          [{:secure_headers, "~> 0.0.1"}]
         end
 
   2. Ensure secure_headers is started before your application:
