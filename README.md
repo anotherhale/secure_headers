@@ -18,16 +18,17 @@ The supported security headers include:
 SecureHeaders is available in Hex (https://hex.pm/packages/secure_headers) and can be installed as:
 
   1. Add secure_headers to your list of dependencies in `mix.exs`:
-
+```
         def deps do
           [{:secure_headers, "~> 0.0.1"}]
         end
-
+```
   2. Ensure secure_headers is started before your application:
-
+```
         def application do
           [applications: [:secure_headers]]
         end
+```
         
   3. Add the plug to your application, e.g., to a pipeline in a [Phoenix](http://www.phoenixframework.org/) router. 
 
