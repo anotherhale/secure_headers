@@ -32,6 +32,7 @@ defmodule SecureHeaders do
       |> SecureHeaders.XFrameOptions.validate
       |> SecureHeaders.XPermittedCrossDomainPolicies.validate
       |> SecureHeaders.XXssProtection.validate
+      |> SecureHeaders.ClearSiteData.validate
   end
   
   defp set_headers(conn, options) when options |> is_list do

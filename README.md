@@ -12,6 +12,7 @@ The supported security headers include:
 - X-Download-Options - [Prevent file downloads opening](http://msdn.microsoft.com/en-us/library/ie/jj542450(v=vs.85).aspx)
 - X-Permitted-Cross-Domain-Policies - [Restrict Adobe Flash Player's access to data](https://www.adobe.com/devnet/adobe-media-server/articles/cross-domain-xml-for-streaming.html)
 - Public Key Pinning - Pin certificate fingerprints in the browser to prevent man-in-the-middle attacks due to compromised Certificate Authorities. [Public Key Pinning  Specification](https://tools.ietf.org/html/rfc7469)
+- Clear-Site-Data - Clearing browser data for origin. [Clear-Site-Data specification](https://w3c.github.io/webappsec-clear-site-data/).
 
 ## Installation
 
@@ -47,7 +48,8 @@ config secure_headers:, SecureHeaders,
       x_download_options: "noopen", 
       x_frame_options: "sameorigin", 
       x_permitted_cross_domain_policies: "none", 
-      x_xss_protection: "1; mode=block"
+      x_xss_protection: "1; mode=block",
+      clear_client_data: "cache"
   ]
 ]
 ```
@@ -91,6 +93,7 @@ defmodule SecurePhoenixApp.SecureController do
     X-Permitted-Cross-Domain-Policies:     #{conn.assigns[:x_permitted_cross_domain_policies]}  
     X-XSS-Protection:                      #{conn.assigns[:x_xss_protection]}
     Public Key Pinning:                    #{conn.assigns[:http_public_key_pins]}     
+    Clear-Site-Data:                       #{conn.assigns[:clear_site_data]}
 
     """
     end

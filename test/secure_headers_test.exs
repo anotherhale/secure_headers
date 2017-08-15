@@ -20,7 +20,8 @@ defmodule SecureHeaders.SecureHeadersTest do
       {"x-download-options", "noopen"},
       {"x-frame-options", "sameorigin"},
       {"x-permitted-cross-domain-policies", "none"},
-      {"x-xss-protection", "1; mode=block"}
+      {"x-xss-protection", "1; mode=block"},
+      {"clear-site-data", "cache"}
     ]
   end
 
@@ -59,14 +60,14 @@ defmodule SecureHeaders.SecureHeadersTest do
     assert response.status == Status.code(:ok)
     assert response.resp_headers ==  [
       {"cache-control", "max-age=0, private, must-revalidate"}, 
-      {"content-security-policy", "default-src 'none';"}, 
       {"http-public-key-pins", ""}, 
       {"strict-transport-security", "max-age=631138519"}, 
       {"x-content-type-options", "nosniff"}, 
       {"x-download-options", "noopen"}, 
       {"x-frame-options", "sameorigin"}, 
       {"x-permitted-cross-domain-policies", "none"}, 
-      {"x-xss-protection", "1; mode=block"}
+      {"x-xss-protection", "1; mode=block"},
+      {"content-security-policy", "default-src 'none';"}
     ]
   end
 
