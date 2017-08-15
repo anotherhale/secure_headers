@@ -48,8 +48,7 @@ config secure_headers:, SecureHeaders,
       x_download_options: "noopen", 
       x_frame_options: "sameorigin", 
       x_permitted_cross_domain_policies: "none", 
-      x_xss_protection: "1; mode=block",
-      clear_client_data: "cache"
+      x_xss_protection: "1; mode=block"
   ]
 ]
 ```
