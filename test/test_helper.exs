@@ -26,7 +26,8 @@ defmodule TestApp do
       x_download_options: "noopen", 
       x_frame_options: "sameorigin", 
       x_permitted_cross_domain_policies: "none", 
-      x_xss_protection: "1; mode=block"
+      x_xss_protection: "1; mode=block",
+      clear_site_data: "cache"
     ]
   ] 
 	use AppMaker, secure_headers: @secure_config
