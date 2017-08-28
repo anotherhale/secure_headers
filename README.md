@@ -38,7 +38,7 @@ SecureHeaders by design defaults to a strict security policy.  If no opts are su
 the following secure configuration:
 
 ```elixir
-config secure_headers:, SecureHeaders,
+config :secure_headers, SecureHeaders,
   config: [
       content_security_policy: "default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';",
       http_public_key_pins: "",
@@ -115,7 +115,7 @@ Second - config in Application environment
 
 use Mix.Config
 
-config secure_headers:, SecureHeaders,
+config :secure_headers, SecureHeaders,
     config: [
       content_security_policy: "default-src 'self';" ,
       strict_transport_security: "max-age=631138519",
